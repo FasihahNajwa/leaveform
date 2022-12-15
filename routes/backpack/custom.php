@@ -7,6 +7,7 @@
 // Routes you generate using Backpack\Generators will be placed here.
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LookupController;
 
 // Protect your routes with 'can:Manage System' middleware!!
 
@@ -39,4 +40,12 @@ Route::group([
     Route::group(['middleware' => 'can:Manage Positions'], function(){
         Route::crud('position', 'PositionCrudController');
     });
+
+    Route::group(['middleware' => 'can:Manage H O D Application Leaves'], function(){
+        Route::crud('h-o-d-application-leave', 'HODApplicationLeaveCrudController');
+    });
+    Route::group(['middleware' => 'can:Manage Admin Emergency Contacts'], function(){
+        Route::crud('admin-emergency-contact', 'AdminEmergencyContactCrudController');
+    });
+    Route::get('/lookup/counts', [LookupController::class, 'counts']);
 }); // this should be the absolute last line of this file

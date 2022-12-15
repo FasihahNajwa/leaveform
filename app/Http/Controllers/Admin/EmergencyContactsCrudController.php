@@ -30,6 +30,7 @@ class EmergencyContactsCrudController extends CrudController
         $this->crud->setModel(\App\Models\EmergencyContacts::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/emergency-contacts');
         $this->crud->setEntityNameStrings(__('emergency contacts'), __('emergency contacts'));
+        $this->crud->addClause('where','user_id', user()->id); //user tu je boleh tengok dia punya
     }
 
     /**
@@ -149,12 +150,12 @@ class EmergencyContactsCrudController extends CrudController
             [
                 'label' => __('Phone No'),
                 'name'  => 'phone_no',
-                'type'  => 'text',
+                'type'  => 'number',
             ],
             [
                 'label' => __('Home No'),
                 'name'  => 'home_no',
-                'type'  => 'text',
+                'type'  => 'number',
             ],
         ];
     }

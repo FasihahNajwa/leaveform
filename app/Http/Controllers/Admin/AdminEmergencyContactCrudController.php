@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\EmergencyContactCreateRequest;
-use App\Http\Requests\EmergencyContactUpdateRequest;
+use App\Http\Requests\AdminEmergencyContactCreateRequest;
+use App\Http\Requests\AdminEmergencyContactUpdateRequest;
 use App\Http\Controllers\CrudController;
 use App\Models\User;
 
+
 /**
- * Class EmergencyContactCrudController
+ * Class AdminEmergencyContactCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class EmergencyContactCrudController extends CrudController
+class AdminEmergencyContactCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -27,9 +28,9 @@ class EmergencyContactCrudController extends CrudController
      */
     public function setup()
     {
-        $this->crud->setModel(\App\Models\EmergencyContact::class);
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/emergency-contact');
-        $this->crud->setEntityNameStrings(__('emergency contact'), __('emergency contacts'));
+        $this->crud->setModel(\App\Models\EmergencyContact::class); //change ikut class dia
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/admin-emergency-contact');
+        $this->crud->setEntityNameStrings(__('admin emergency contact'), __('admin emergency contacts'));
     }
 
     /**
@@ -51,7 +52,7 @@ class EmergencyContactCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(EmergencyContactCreateRequest::class);
+        $this->crud->setValidation(AdminEmergencyContactCreateRequest::class);
 
         $this->crud->addFields($this->fieldConfigs());
     }
@@ -64,7 +65,7 @@ class EmergencyContactCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->crud->setValidation(EmergencyContactUpdateRequest::class);
+        $this->crud->setValidation(AdminEmergencyContactUpdateRequest::class);
 
         $this->crud->addFields($this->fieldConfigs());
     }
@@ -103,20 +104,21 @@ class EmergencyContactCrudController extends CrudController
                 'type'  => 'text',
             ],
             [
-                'label' => __('Relationship'),
+                'label' => __('Relation'),
                 'name'  => 'relation',
                 'type'  => 'text',
             ],
             [
                 'label' => __('Phone No'),
                 'name'  => 'phone_no',
-                'type'  => 'number',
+                'type'  => 'text',
             ],
             [
                 'label' => __('Home No'),
                 'name'  => 'home_no',
-                'type'  => 'number',
+                'type'  => 'text',
             ],
+            
         ];
     }
 
@@ -156,6 +158,7 @@ class EmergencyContactCrudController extends CrudController
                 'name'  => 'home_no',
                 'type'  => 'text',
             ],
+            
         ];
     }
 }

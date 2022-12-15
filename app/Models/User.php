@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles, CrudTrait, HasApiTokens;
@@ -86,13 +87,13 @@ class User extends Authenticatable
 
     public function department()
     {
-        return $this->hasOne(Department::class);
+        return $this->belongsTo(Department::class);
     }
 
-    // public function position()
-    // {
-    //     return $this->hasOne(Position::class,'position_id');
-    // }
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
 
     public function headdepartment()
     {

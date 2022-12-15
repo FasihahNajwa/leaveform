@@ -14,7 +14,7 @@ class AddHeadDepartmentIdForeignToApplicationLeaves extends Migration
     public function up()
     {
         Schema::table('application_leaves', function (Blueprint $table) {
-            $table->unsignedBigInteger('head_department_id')->after('leave_type_id');
+            $table->unsignedBigInteger('head_department_id')->nullable()->after('leave_type_id');
             $table->foreign('head_department_id')->references('id')->on('head_departments')->onDelete('cascade');
         });
     }

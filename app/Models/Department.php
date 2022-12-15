@@ -40,6 +40,7 @@ class Department extends Model
     //     return $this->belongsTo(User::class);
     // }
 
+
     // public function department()
     // {
     //     return $this->hasOne('App\Models\Department','department_id');

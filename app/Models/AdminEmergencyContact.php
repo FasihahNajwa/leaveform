@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
-class HeadDepartment extends Model
+class AdminEmergencyContact extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class HeadDepartment extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'head_departments';
+    protected $table = 'admin_emergency_contacts';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -35,20 +35,6 @@ class HeadDepartment extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    // public function applicationLeave()
-    // {
-    //     return $this->belongsTo(ApplicationLeave::class);
-    // }
 
 
     /*

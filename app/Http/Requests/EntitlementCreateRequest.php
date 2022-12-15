@@ -28,8 +28,9 @@ class EntitlementCreateRequest extends FormRequest
         return [
             'user_id' => 'required',
             'leave_type_id' => 'required',
-            'balance_day' => 'required',
-            'total_day' => 'required',
+            'applicable_leave' => 'required',
+            'remaining_leave' => 'required',
+            'total_applied_leave' => 'required',
         ];
     }
 

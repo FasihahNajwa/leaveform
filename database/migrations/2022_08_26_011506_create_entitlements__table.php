@@ -15,8 +15,9 @@ class CreateEntitlementsTable extends Migration
     {
         Schema::create('entitlements_', function (Blueprint $table) {
             $table->id();
-            $table->integer('balance_day');
-            $table->integer('total_day');
+            $table->integer('applicable_leave');
+            $table->integer('total_applied_leave');
+            $table->integer('remaining_leave');
             $table->timestamps();
         });
 

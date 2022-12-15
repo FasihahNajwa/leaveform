@@ -199,21 +199,22 @@ class UserCrudController extends CrudController
             ],
             [
                 'label'     => __('Department'),
-                'name'      => 'department_id', 
+                'name'      => 'Department', 
                 'type'      => 'select', 
-                'tab'   => __('Account'), 
+                'tab'    => __('Account'), 
+                'entity' => 'department',
+                'model'  => Department::class,
+                'attribute' => 'name',
             ],
-            // [
-            //     'name'      => 'position_id', 
-            //     'label'     => 'Position',
-            //     'type'      => 'select2',
-            //     'tab'   => __('Account'),
-                
-            //     'entity'    => 'position',
-            //     'model'     => "App\Models\Position",
-            //     'attribute' => 'name',
-            //     // 'default'   => 2, 
-            // ],
+            [
+                'label'     => __('Position'),
+                'name'      => 'position_id', 
+                'type'      => 'select',
+                'tab'   => __('Account'),
+                'entity'    => 'position',
+                'model'     => "App\Models\Position",
+                'attribute' => 'name',
+            ],
             
         ]);
     }

@@ -31,9 +31,6 @@ class ApplicationLeaveCrudController extends CrudController
         $this->crud->setModel(\App\Models\ApplicationLeave::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/application-leave');
         $this->crud->setEntityNameStrings(__('application leave'), __('application leaves'));
-        $this->crud->addClause('where','user_id', user()->id);
-        // $this->crud->addClause('where', 'status','!=', 'Permohonan Baru');
-        // $this->crud->denyAccess('create');
     }
 
     /**
@@ -45,9 +42,6 @@ class ApplicationLeaveCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->addColumns($this->columnConfigs());
-
-        // $this->crud->set('show.setFromDb', false); //image
-        // $this->crud->addColumns($this->getFieldsData(TRUE)); //image
     }
 
     /**
@@ -99,22 +93,22 @@ class ApplicationLeaveCrudController extends CrudController
                 'attribute' => 'name',
                 'model'     => LeaveType::class,
             ],
-            // [
-            //     'label'     => __('User'),
-            //     'name'      => 'user_id',
-            //     'type'      => 'select',
-            //     'entity'    => 'user',
-            //     'attribute' => 'name',
-            //     'model'     => User::class,
-            // ],
-            // [
-            //     'label'     => __('Head Department'),
-            //     'name'      => 'head_department_id',
-            //     'type'      => 'select',
-            //     'entity'    => 'headDepartment',
-            //     'attribute' => 'name',
-            //     'model'     => "App\Models\HeadDepartment",
-            // ],
+            [
+                'label'     => __('User'),
+                'name'      => 'user_id',
+                'type'      => 'select',
+                'entity'    => 'user',
+                'attribute' => 'name',
+                'model'     => User::class,
+            ],
+            [
+                'label'     => __('Head Department'),
+                'name'      => 'head_department_id',
+                'type'      => 'select',
+                'entity'    => 'headDepartment',
+                'attribute' => 'name',
+                'model'     => "App\Models\HeadDepartment",
+            ],
             [
                 'label' => __('Start Date'),
                 'name'  => 'start_date',
@@ -135,41 +129,14 @@ class ApplicationLeaveCrudController extends CrudController
                 'name'  => 'reason',
                 'type'  => 'textarea',
             ],
-            // [
-            //     'label' => __('Status'),
-            //     'name'  => 'status',
-            //     'type'  => 'text',
-            // ],
-            // [
-            //     'label' => __('Supporting Document'),
-            //     'name'  => 'supporting_document',
-            //     'type'  => 'image',
-            //     'crop' => true, // set to true to allow cropping, false to disable
-            //     'aspect_ratio' => 1, // omit or set to 0 to allow any aspect ratio
-            // ],
             [
-                'label' => __('Supporting Document'),
-                'name'  => 'supporting_document',
-                'type'  => 'upload',
-                'upload' => true,
-                'disk'  => 'public', // if you store files in the /public folder, please omit this; if you store them in /storage or S3, please specify it;
-                // optional:
-                // 'temporary' => 10 // if using a service, such as S3, that requires you to make temporary URLs this will make a URL that is valid for the number of minutes specified
-                'wrapper' => ['class' => 'form-group col-sm-4'],
+                'label' => __('Is Approve'),
+                'name'  => 'is_approve',
+                'type'  => 'boolean',
             ],
             [
-                'label' => __('Status'),
-                'name'  => 'status',
-                'type'  => 'text',
-            ],
-            [
-                'label' => __('Remarks Approval'),
-                'name'  => 'remarks_approval',
-                'type'  => 'text',
-            ],
-            [
-                'label' => __('Remarks Support'),
-                'name'  => 'remarks_support',
+                'label' => __('Attachment Path'),
+                'name'  => 'attachment_path',
                 'type'  => 'text',
             ],
         ];
@@ -189,64 +156,48 @@ class ApplicationLeaveCrudController extends CrudController
             [
                 'label'     => __('User'),
                 'name'      => 'user_id',
-                'type'      => 'hidden',
+                'type'      => 'select',
                 'entity'    => 'user',
                 'attribute' => 'name',
-                'default'   => user()->id,
                 'model'     => User::class,
             ],
-            // [
-            //     'label'     => __('Head Department'),
-            //     'name'      => 'headDepartment',
-            //     'type'      => 'select',
-            //     'entity'    => 'headDepartment',
-            //     'attribute' => 'name',
-            //     'model'     => "App\Models\HeadDepartment",
-            // ],
+            [
+                'label'     => __('Head Department'),
+                'name'      => 'head_department_id',
+                'type'      => 'select',
+                'entity'    => 'headDepartment',
+                'attribute' => 'name',
+                'model'     => "App\Models\HeadDepartment",
+            ],
             [
                 'label' => __('Start Date'),
                 'name'  => 'start_date',
-                'locale' => ['format' => 'DD/MM/YYYY'],
                 'type'  => 'date',
-
             ],
             [
                 'label' => __('End Date'),
                 'name'  => 'end_date',
-                'locale' => ['format' => 'DD/MM/YYYY'],
                 'type'  => 'date',
             ],
             [
                 'label' => __('Count'),
                 'name'  => 'count',
-                'type'  => 'number',
+                'type'  => 'text',
             ],
             [
                 'label' => __('Reason'),
                 'name'  => 'reason',
                 'type'  => 'textarea',
             ],
-            // [
-            //     'label' => __('Status'),
-            //     'name'  => 'status',
-            //     'type'  => 'text',
-            // ],
-            // [
-            //     'label' => __('Supporting Document'),
-            //     'name'  => 'supporting_document',
-            //     'type'  => 'image',
-            //     'crop' => true, // set to true to allow cropping, false to disable
-            //     'aspect_ratio' => 1, // omit or set to 0 to allow any aspect ratio
-            // ],
             [
-                'label' => __('Supporting Document'),
-                'name'  => 'supporting_document',
-                'type'  => 'upload',
-                'upload' => true,
-                'disk'  => 'public', // if you store files in the /public folder, please omit this; if you store them in /storage or S3, please specify it;
-                // optional:
-                // 'temporary' => 10 // if using a service, such as S3, that requires you to make temporary URLs this will make a URL that is valid for the number of minutes specified
-                'wrapper' => ['class' => 'form-group col-sm-4'],
+                'label' => __('Is Approve'),
+                'name'  => 'is_approve',
+                'type'  => 'boolean',
+            ],
+            [
+                'label' => __('Attachment Path'),
+                'name'  => 'attachment_path',
+                'type'  => 'text',
             ],
         ];
     }

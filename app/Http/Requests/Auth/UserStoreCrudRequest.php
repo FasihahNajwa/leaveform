@@ -29,6 +29,9 @@ class UserStoreCrudRequest extends FormRequest
             'username' => 'required|unique:users',
             'name'     => 'required',
             'password' => 'required|confirmed',
+            // 'confirm password'=> 'required',
+            // 'user_id' => 'required',
+
         ];
     }
 }

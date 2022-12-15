@@ -27,13 +27,15 @@ class ApplicationLeaveCreateRequest extends FormRequest
     {
         return [
             'leave_type_id' => 'required',
-            'employee_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'count' => 'required',
-            'string' => 'required',
-            'is_approve' => 'required',
-            'attachment_path' => 'required',
+            // 'user_id' => 'required',
+            // 'head_department_id' => 'required',
+            'start_date' => 'required|date',
+            'end_date'   => 'required|date|after:start_date',
+            'count'      => 'required',
+            // 'string' => 'required',
+            // 'is_approve' => 'required',
+            'reason' => 'required',
+            // 'attachment_path' => 'required',
         ];
     }
 

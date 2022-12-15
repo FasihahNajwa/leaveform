@@ -37,9 +37,34 @@ class UserSeeder extends Seeder
                 'Manage Emergency Contacts',
                 'Manage Entitlements',
                 'Manage Positions',
+                // 'Manage Admin Application Leaves',
+                'Manage H O D Application Leaves',
+                'Manage Admin Emergency Contacts',
                 // more permissions
             ],
-            'User' => []
+            'User' => [
+                'Manage Application Leaves',
+                'Manage Emergency Contacts',
+            ],
+            'Chief Technology Officer' => [
+                'Manage Application Leaves',
+                'Manage Emergency Contacts',
+                'Approved Leave Application',
+                'Manage H O D Application Leaves',
+            ],
+            'Chief Business Officer' => [
+                'Manage Application Leaves',
+                'Manage Emergency Contacts',
+                'Approved Leave Application',
+                'Manage H O D Application Leaves',
+            ],
+            'Human Resources' => [
+                'Manage Application Leaves',
+                'Manage Emergency Contacts',
+                'Supported Leave Application',
+                'Manage H O D Application Leaves',
+            ],
+
         ];
 
         $createdPermissions = [];

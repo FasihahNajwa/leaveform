@@ -19,8 +19,14 @@ class CreateApplicationLeavesTable extends Migration
             $table->date('end_date');
             $table->integer('count');
             $table->text('string');
-            $table->boolean('is_approve');
-            $table->string('attachment_path');
+            $table->string('status')->default('Permohonan Baru');
+            $table->longText('supporting_document')->nullable();
+            $table->string ('approved_by')->nullable();
+            $table->date ('approved_date')->nullable();
+            $table->string('remarks_approval')->nullable();
+            $table->string('supported_by')->nullable();
+            $table->date ('supported_date')->nullable();
+            $table->string('remarks_support')->nullable();
             $table->timestamps();
         });
     }

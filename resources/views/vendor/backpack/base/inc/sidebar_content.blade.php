@@ -61,6 +61,7 @@
     <a class='nav-link' href='{{ backpack_url('application-leave') }}'>
         <i class='nav-icon la la-table'></i>
         {{__('Application Leaves')}}
+        <div class="get-count badge badge-danger d-none" data-type="application-leave">0</div>
     </a>
 </li>
 @endcanany
@@ -88,3 +89,42 @@
     </a>
 </li>
 @endcanany
+{{-- @canany(['Manage Admin Application Leaves'])
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('admin-application-leave') }}'>
+        <i class='nav-icon la la-table'></i>
+        {{__('Admin Application Leaves')}}
+    </a>
+</li>
+@endcanany  --}}
+@canany(['Manage H O D Application Leaves'])
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('h-o-d-application-leave') }}'>
+        <i class='nav-icon la la-table'></i>
+        {{__('H O D Application Leaves')}}
+        <div class="get-count badge badge-danger d-none" data-type="h-o-d-application-leave">0</div>
+    </a>
+</li>
+@endcanany
+@canany(['Manage Admin Emergency Contacts'])
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('admin-emergency-contact') }}'>
+        <i class='nav-icon la la-table'></i>
+        {{__('Admin Emergency Contacts')}}
+    </a>
+</li>
+@endcanany
+
+@push('after_scripts')
+<script>
+    $('.get-count').each(function(index, el){
+        $.get('/app/lookup/counts?type=' + $(el).data('type'))
+            .then(function(response){
+                if(response > 0) {
+                    $(el).text(response).removeClass('d-none');
+                }
+            })
+    })
+
+</script>
+@endpush
